@@ -3,25 +3,21 @@ Naming conventions
 
 Class names : 
 -------------
-
 Starts with capital letter. No space, every new word starts with a capital letter.
 eg: Class for OH user details will be "OhUser"
 
 Variable names and objects:
 ---------------------------
-
 Starts with small letter. No space, every new word starts with a capital letter.
 eg: object of OhUser would be "openHappinessUser"
 
 Function names:
 ---------------
-
 Starts with small letter and each word has to be seperated with an _ sign. It is necessary to give meaningful names to the funtions. It is necessary to give the purpose of the function above each of the function in a proper format to be mentioned soon.
 eg: get_follower_results(uid, query)
 
 Control structures:
 -------------------
-
 All control structures and branching statements should be preceded by a newline character and the control statement block should end with a 2 new line characters.
 eg: print hello
 
@@ -33,7 +29,6 @@ print exiting
 
 Indentation:
 -----------
-
 Python's default intendation with tabs will be used. 6 Spaced intendation is not allowed.
 eg:
 if ( TRUE ):
@@ -41,5 +36,4 @@ if ( TRUE ):
 
 Backup files:
 ------------
-
 No backup files of the sort main.py~ or .main.py will not be allowed on commiting to the github.
