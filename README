@@ -39,4 +39,7 @@ eg:
 if ( TRUE ):
 	print bye
 
+Backup files:
+------------
 
+No backup files of the sort main.py~ or .main.py will not be allowed on commiting to the github.
