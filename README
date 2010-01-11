@@ -1,1 +1,6 @@
 Naming conventions
+
+Class names : 
+
+Starts with capital letter. No space every new word starts with the capital letter.
+eg: Class for OH user details will be "OhUser"
