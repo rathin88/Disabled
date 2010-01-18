@@ -1,7 +1,7 @@
 # main.py
 
 import os, sys
-os.environ["DJANGO_SETTINGS_MODULE"] = "searchnstore.settings"
+os.environ["DJANGO_SETTINGS_MODULE"] = "openhappiness.settings"
 sys.path.append("/tmp/openhappiness")
 
 # Google App Engine imports.
@@ -34,3 +34,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
