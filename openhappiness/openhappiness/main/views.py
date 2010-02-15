@@ -1,4 +1,4 @@
-#OpenHappiness Views
+#OpenHappiness Views add django forms
 
 from google.appengine.api import users
 from google.appengine.ext.db import *
@@ -32,6 +32,7 @@ def signup(request):
 		user_id=user.user_id()
 		return render_to_response('main/signup/signup.html',{"user_id":user_id})
 
+# user_id, name, description, avatar
 def submitsignup(request):
 	user=users.get_current_user()
 	params=request.GET
@@ -55,6 +56,7 @@ def submitsignup(request):
 	else:
 		return render_to_response('main/signup/signuperror.html', {"user_id":result.user_id, "name": result.name, "nickname": result.handle} )
 
+# handle
 def userprofile(request):
 	user=users.get_current_user()
 	params=request.GET
@@ -67,7 +69,7 @@ def userprofile(request):
 		return render_to_response('main/profile/userprofileerror.html', {"handle":handle})
 
 		
-
+# action
 def selfprofile(request):
 	user=users.get_current_user()
 	params=request.GET
@@ -80,6 +82,7 @@ def selfprofile(request):
 	if action=="edit":
 		return render_to_response('main/profile/editprofile.html', {"name": profile_details.name, "nickname":profile_details.handle, "user_id":profile_details.user_id, "description":profile_details.description, "avatar":profile_details.avatar})
 
+# user_id, name, description, avatar
 def editprofile(request):
 	user=users.get_current_user()
 	params=request.GET
@@ -92,27 +95,28 @@ def editprofile(request):
 	newUser.put()
 	return render_to_response('main/profile/profile.html', {"name": newUser.name, "nickname":newUser.handle, "user_id":newUser.user_id, "description":newUser.description, "avatar":newUser.avatar})
 
+# handleB, priority
 def follow(request):
-	user=user.get_current_user()
+	user=users.get_current_user()
 	params=request.GET
 	newFollow=Follow()
 	newFollow.handle=user.nickname()
 	newFollow.userB=params['handleB']
-	newFollow.priority=params['priority']
+	newFollow.priority=int(params['priority'])
 	newFollow.put()
-	newUser=User()
-	query = GqlQyery("SELECT * FROM User WHERE handle=:hndl", hndl=newFollow.handle)
-	return render_to_response('main/profile/profile.html', {"name": newUser.name, "nickname":newUser.handle, "user_id":newUser.user_id, "description":newUser.description, "avatar":newUser.avatar})
+	query = GqlQuery("SELECT * FROM Follow WHERE handle=:hndl", hndl=user.nickname())
+	followlist = query.fetch(0)
+	return render_to_response('main/profile/followlist.html',  {"followlist": followlist})
 
 def listfollow(request):
-	user=user.get_current_user()
+	user=users.get_current_user()
 	query = GqlQuery("SELECT * FROM Follow WHERE handle=:hndl", hndl=user.nickname())
-	followlist = query.fetch()
+	followlist = query.fetch(0)
 	return render_to_response('main/profile/followlist.html',  {"followlist": followlist})
 
 def followers(request):
-	user=user.get_current_user()
-	query = GqlQuery("SELECT * FROM Follow WHERE userB=:usrB", :usrB=user.nickname())
-	followerlist = query.fetch()
+	user=users.get_current_user()
+	query = GqlQuery("SELECT * FROM Follow WHERE userB=:usrB", usrB=user.nickname())
+	followerlist = query.fetch(0)
 	return render_to_response('main/profile/followers.html', {"followerlist" : followerlist})
 

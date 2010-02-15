@@ -12,17 +12,18 @@ class User(db.Model):
 	description = db.StringProperty(multiline=True)
 	followercount=db.IntegerProperty()
 
-#Tag table
-#class Tag(db.Model):
-#	tag = db.StringProperty()
-	
-#TaggedResult table
-#class TaggedResult(db.Model):
-#	tagid = db.IntegerProperty()
-#	url = db.StringProperty()
-#	tagdate = db.DateTimeProperty(auto_now_add=True)
-#	userid = db.ReferenceProperty(User)
-	
+#TagSequence table
+class TagSequence(db.Model):
+	tag_id=db.IntegerProperty()
+	tag_sequence_no=db.IntegerProperty()
+	tag=db.StringProperty()
+	handle=db.StringProperty()
+
+#UserSearch tag storage table
+class UserSearch(db.Model):
+	tag_id=db.IntegerProperty()
+	url=db.StringProperty()
+	handle=db.StringProperty()	
 
 #Follow table
 class Follow(db.Model):

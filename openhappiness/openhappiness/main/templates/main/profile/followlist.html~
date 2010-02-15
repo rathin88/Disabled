@@ -1,0 +1,7 @@
+<html>
+<title>{{ name }} : Follows</title>
+<body>
+{% for follow in followlist %}
+<li> {{ follow['userB'] }}</li>
+{% endfor %}
+</body></html>
